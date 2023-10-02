@@ -73,6 +73,10 @@ Hurray!!! :rocket: you have set the project up and running! :smile:
 ## API DOCUMENTATION
 
 ### 
+>Live hosting Link:
+```
+https://hng-task-two.afundcap.com/public/api
+```
 
 ## POST /api/save_video
 - Accepts a video from the Frontend. The video must be in MP4 format.
