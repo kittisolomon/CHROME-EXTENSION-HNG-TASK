@@ -1,66 +1,168 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## HNG X Stage Five Task
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The project is a backend infrastructure that powers a chrome extension, that allows users screen record their screens and save to a cloud storage, for the purspose of this project Amazon s3 bucket was used for the storage of screen recording, the API also has the ability to transcribe text from recorded videos, this was made possible by integrating Openai's whisper API into the project.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Stack Used
+- PHP
+- Laravel
+- Mysql
+- Composer
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## External Tools used
+- Whisper API
+- Amazon s3 bucket
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Project Setup  Guide:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Fork this REPO
+- Clone the repo from your GitHub account to your local PC
+```
+https://github.com/kittisolomon/SCREEN-RECORD-UPLOAD-API-HNG-TASK.git
+```
 
-### Premium Partners
+- Navigate to the cloned Project directory
+```
+ cd cloned-project-directory
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- Run the composer command to install depencies
 
-## Contributing
+```
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Create '.env' file in the project root directory
+- Edit the file, copy the Database settings below and paste in your '.env' file
+```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=My_Database
+  DB_USERNAME=root
+  DB_PASSWORD=
+```
+- Generate an Application Key with the command:
+```vbnet
+php artisan key:generate
+```
+- Create a database:
 
-## Code of Conduct
+ Create a Database in your local database management system (e.g MYSQL) with the same name as defined in your '.env' file above
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Run Migrations:
+  To create the project database table, run the command below
 
-## Security Vulnerabilities
+  ```
+  php artisan migrate
+  ```
+- Start the Development Server
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+php artisan serve
+```
+by default your app should be running on 'http://localhost:8000'
 
-## License
+Hurray!!! :rocket: you have set the project up and running! :smile:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## API DOCUMENTATION
+
+### 
+
+## POST /api/save_video
+- Accepts a video from the Frontend. The video must be in MP4 format.
+Request:
+```
+{
+  "file": "video"
+}
+```
+Response:
+```
+ {
+    "message": "Video Uploaded Successfully",
+    "status_code": 201,
+    "data": {
+        "id": "1",
+        "file_name": "short_poem.mp4",
+        "title": "short_poem",
+        "file_size": "0.76mb",
+        "file_length": "0:49",
+        "url": "https://videohng.s3.amazonaws.com/videos/short_poem.mp4",
+        "transcription": null,
+        "slug": "short-poem",
+        "uploaded_at": "2023-10-01 19:33:00"
+    }
+}
+
+```
+
+
+## GET /api
+
+Retrieves all saved recordings in the Database.
+
+Response:
+
+```vbnet
+{
+    "data": [
+        {
+            "id": "1",
+            "file_name": "short_poem.mp4",
+            "title": "short_poem",
+            "file_size": "0.76mb",
+            "file_length": "0:49",
+            "url": "https://videohng.s3.amazonaws.com/videos/short_poem.mp4",
+            "transcription": " Life can bring you joy, life can bring you sadness, life can bring you hate, life can bring you madness. Life can catch you off guard, can hit you fast and it can hit you hard. It knocks you down to your lowest low until your vulnerabilities begin to show. There are those little moments that you see. Life ends so bad for you or for me. Love and hope, emotions that are fulfilling. So when you think about it, life is worth living.",
+            "slug": "short-poem",
+            "uploaded_at": "2023-10-01 19:33:00"
+        }
+    ]
+}
+```
+
+## GET /api/{id}
+
+Retrieves a single Recording.
+
+Parameter: id 
+The id of the Recording saved in the database.
+Response:
+
+```vbnet
+{
+    "data": {
+        "id": "1",
+        "file_name": "short_poem.mp4",
+        "title": "short_poem",
+        "file_size": "0.76mb",
+        "file_length": "0:49",
+        "url": "https://videohng.s3.amazonaws.com/videos/short_poem.mp4",
+        "transcription": " Life can bring you joy, life can bring you sadness, life can bring you hate, life can bring you madness. Life can catch you off guard, can hit you fast and it can hit you hard. It knocks you down to your lowest low until your vulnerabilities begin to show. There are those little moments that you see. Life ends so bad for you or for me. Love and hope, emotions that are fulfilling. So when you think about it, life is worth living.",
+        "slug": "short-poem",
+        "uploaded_at": "2023-10-01 19:33:00"
+    }
+}
+```
+
+
+## DELETE /api/{id}
+Deletes recording from both the database and s3 bucket.
+
+Parameter: id
+The id of the video.
+Response:
+
+```vbnet
+{
+  'message' => "Recording Deleted Successfully",
+  'status_code' => 200
+}
+```
+
