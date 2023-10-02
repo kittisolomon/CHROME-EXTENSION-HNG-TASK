@@ -78,7 +78,7 @@ Hurray!!! :rocket: you have set the project up and running! :smile:
 https://hng-task-two.afundcap.com/public/api
 ```
 
-## POST /api/save_video
+## POST /save_video
 - Accepts a video from the Frontend. The video must be in MP4 format.
 Request:
 ```
@@ -107,7 +107,7 @@ Response:
 ```
 
 
-## GET /api
+## GET /
 
 Retrieves all saved recordings in the Database.
 
@@ -131,7 +131,7 @@ Response:
 }
 ```
 
-## GET /api/{id}
+## GET /{id}
 
 Retrieves a single Recording.
 
@@ -156,7 +156,7 @@ Response:
 ```
 
 
-## DELETE /api/{id}
+## DELETE /{id}
 Deletes recording from both the database and s3 bucket.
 
 Parameter: id
